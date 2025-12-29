@@ -1,23 +1,12 @@
-/**
- * main.js
- *
- * Bootstraps Vuetify and other plugins then mounts the App`
- */
+import App from "./App.vue";
+import router from "./router";
+import { createApp } from "vue";
+import vuetify from "./plugins/vuetify";
+import VueApexCharts from "vue3-apexcharts";
 
-// Plugins
-import { registerPlugins } from '@/plugins'
+import "unfonts.css";
+import "@/scss/style.scss";
 
-// Components
-import App from './App.vue'
+const app = createApp(App);
 
-// Composables
-import { createApp } from 'vue'
-
-// Styles
-import 'unfonts.css'
-
-const app = createApp(App)
-
-registerPlugins(app)
-
-app.mount('#app')
+app.use(vuetify).use(VueApexCharts).use(router).mount("#app");

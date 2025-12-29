@@ -13,7 +13,15 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    LoginForm: typeof import('./src/components/auth/LoginForm.vue')['default']
+    MonthlyEarnings: typeof import('./src/components/dashboard/MonthlyEarnings.vue')['default']
+    ProductCards: typeof import('./src/components/dashboard/ProductCards.vue')['default']
+    ProductPerformance: typeof import('./src/components/dashboard/ProductPerformance.vue')['default']
+    RecentTransaction: typeof import('./src/components/dashboard/RecentTransaction.vue')['default']
+    RegisterForm: typeof import('./src/components/auth/RegisterForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SalesOverview: typeof import('./src/components/dashboard/SalesOverview.vue')['default']
+    YearlyBreakup: typeof import('./src/components/dashboard/YearlyBreakup.vue')['default']
   }
 }
