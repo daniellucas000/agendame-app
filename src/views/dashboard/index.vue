@@ -7,11 +7,11 @@ import RecentTransaction from "@/components/dashboard/RecentTransaction.vue";
 import ProductPerformance from "@/components/dashboard/ProductPerformance.vue";
 import ProductCards from "@/components/dashboard/ProductCards.vue";
 
-import { useAuthStore } from "@/stores/auth";
-
-const authStore = useAuthStore();
+import { useUserStore } from "@/stores/user";
+const userStore = useUserStore();
 </script>
 <template>
+  <pre>{{ userStore?.user }}</pre>
   <v-row>
     <v-col cols="12">
       <v-row>

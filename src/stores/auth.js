@@ -1,10 +1,9 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { useUserStore } from "./user";
 
 export const useAuthStore = defineStore("auth", {
-  state: () => ({
-    user: null,
-  }),
+  state: () => ({}),
   actions: {
     sanctum() {
       return axios.get("sanctum/csrf-cookie");
@@ -16,12 +15,10 @@ export const useAuthStore = defineStore("auth", {
           password,
         })
         .then((response) => {
-          this.user = response.data.data;
-          console.log(response);
+          const userStore = useUserStore();
+          userStore.user = response.data.data;
         });
     },
   },
-  getters: {
-    isLoggedIn: (state) => !!state?.user?.id,
-  },
+  getters: {},
 });

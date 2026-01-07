@@ -1,4 +1,5 @@
 import App from "./App.vue";
+import axios from "axios";
 import router from "./router";
 import { createApp } from "vue";
 import vuetify from "./plugins/vuetify";
@@ -10,6 +11,12 @@ import pinia from "./plugins/pinia";
 import "./plugins/yup";
 import "./plugins/axios";
 
-const app = createApp(App);
+import { useUserStore } from "./stores/user";
 
-app.use(vuetify).use(pinia).use(VueApexCharts).use(router).mount("#app");
+const app = createApp(App).use(pinia);
+
+const userStore = useUserStore();
+
+userStore.getUser().finally(() => {
+  app.use(vuetify).use(VueApexCharts).use(router).mount("#app");
+});

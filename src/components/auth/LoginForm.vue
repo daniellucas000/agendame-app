@@ -30,15 +30,14 @@ function login(values) {
   feedbackMessage.value = "";
 
   authStore.sanctum().then(() => {
-    // authStore
-    axios.get("/api/user");
-    //   .login(values?.email, values?.password)
-    //   .then(() => {
-    //     router.push({ name: "dashboard" });
-    //   })
-    //   .catch(() => {
-    //     feedbackMessage.value = "Seu email ou senha estão inválidos.";
-    //   });
+    authStore
+      .login(values?.email, values?.password)
+      .then(() => {
+        router.push({ name: "dashboard" });
+      })
+      .catch(() => {
+        feedbackMessage.value = "Seu email ou senha estão inválidos.";
+      });
   });
 }
 </script>
