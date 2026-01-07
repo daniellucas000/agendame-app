@@ -9,7 +9,6 @@ export const useUserStore = defineStore("user", {
     getUser() {
       return axios.get("api/user").then((response) => {
         this.user = response.data.data;
-        console.log(response);
       });
     },
   },
