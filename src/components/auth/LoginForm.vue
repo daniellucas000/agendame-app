@@ -4,17 +4,23 @@ import { useRouter } from "vue-router";
 import axios from "axios";
 import { useForm, useField } from "vee-validate";
 import { schema } from "./schema";
+import { useAuthStore } from "@/stores/auth";
 
 const feedbackMessage = ref("");
 const router = useRouter();
 
 const { handleSubmit, errors, isSubmitting } = useForm({
   validationSchema: schema,
-  validateOnMount: false,
+  initialValues: {
+    email: "test@example.com",
+    password: "password",
+  },
 });
 
 const { value: email } = useField("email");
 const { value: password } = useField("password");
+
+const authStore = useAuthStore();
 
 const submit = handleSubmit(async (values) => {
   await login(values);
@@ -23,19 +29,16 @@ const submit = handleSubmit(async (values) => {
 function login(values) {
   feedbackMessage.value = "";
 
-  axios.get("sanctum/csrf-cookie").then(() => {
-    axios
-      .post("api/login", {
-        email: values?.email,
-        password: values?.password,
-      })
-      .then(() => {
-        router.push({ name: "dashboard" });
-      })
-      .catch(() => {
-        feedbackMessage.value = "Seu email ou senha estão inválidos.";
-      })
-      .finally(() => {});
+  authStore.sanctum().then(() => {
+    // authStore
+    axios.get("/api/user");
+    //   .login(values?.email, values?.password)
+    //   .then(() => {
+    //     router.push({ name: "dashboard" });
+    //   })
+    //   .catch(() => {
+    //     feedbackMessage.value = "Seu email ou senha estão inválidos.";
+    //   });
   });
 }
 </script>
